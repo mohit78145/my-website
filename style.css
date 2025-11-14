@@ -1,0 +1,504 @@
+/* Custom Properties for Dynamic Theming */
+:root {
+  --primary-glow: #00f2fe;
+  --secondary-glow: #4facfe;
+  --accent: #f093fb;
+  --dark: #0f0f23;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text-light: #e0e6ff;
+  --highlight: #ffd700;
+}
+
+/* Animated Background with Particles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+  line-height: 1.8;
+  color: var(--text-light);
+  background: var(--dark);
+  position: relative;
+  overflow-x: hidden;
+  padding: 40px 20px;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 242, 254, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: bgShift 20s ease-in-out infinite;
+}
+
+@keyframes bgShift {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Glass Morphism Container */
+header, nav, section, footer {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 30px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header:hover, nav:hover, section:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 48px rgba(0, 242, 254, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Animated Border Effect */
+header::before, section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+  animation: borderSlide 3s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Header Styling with Neon Effect */
+header {
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3.5em;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-glow), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+  position: relative;
+}
+
+@keyframes glowPulse {
+  from { 
+    filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.5));
+  }
+  to { 
+    filter: drop-shadow(0 0 40px rgba(0, 242, 254, 0.8));
+  }
+}
+
+header img {
+  border-radius: 20px;
+  border: 3px solid var(--primary-glow);
+  margin: 25px 0;
+  box-shadow: 
+    0 0 30px rgba(0, 242, 254, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+header img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 
+    0 0 50px rgba(0, 242, 254, 0.9),
+    0 12px 36px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation with Underline Animation */
+header nav {
+  margin: 25px 0;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+header nav:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+header nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  margin: 0 5px;
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-glow), var(--accent));
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+header h2 {
+  color: var(--accent);
+  font-size: 1.8em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+header p a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+header p a:hover {
+  color: var(--primary-glow);
+  background: rgba(0, 242, 254, 0.1);
+}
+
+/* Profile Links with Icon Effect */
+nav h2 {
+  color: var(--accent);
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 8px 0;
+  border: 2px solid var(--primary-glow);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 242, 254, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+nav a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+nav a:hover {
+  color: var(--dark);
+  background: var(--primary-glow);
+  border-color: var(--primary-glow);
+  transform: translateX(10px);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+}
+
+/* Section Headers with Animated Line */
+section h2 {
+  color: var(--primary-glow);
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-glow), var(--accent));
+  border-radius: 2px;
+  animation: lineExpand 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes lineExpand {
+  from { width: 80px; }
+  to { width: 140px; }
+}
+
+section p {
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 1.15em;
+  line-height: 1.9;
+}
+
+section ul {
+  list-style: none;
+  margin-left: 20px;
+}
+
+section ul li {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  padding-left: 30px;
+  position: relative;
+}
+
+section ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--primary-glow);
+  font-size: 1.5em;
+  animation: arrowBounce 1s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+section dl {
+  margin-left: 20px;
+}
+
+section dt {
+  color: var(--accent);
+  font-size: 1.3em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+section dd {
+  margin-left: 25px;
+  margin-bottom: 20px;
+  text-align: justify;
+  font-size: 1.1em;
+  padding-left: 20px;
+  border-left: 3px solid var(--primary-glow);
+}
+
+/* Table with Hover Glow */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table th {
+  background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+  color: var(--dark);
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+table td {
+  padding: 16px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+table tbody tr:hover td {
+  background: rgba(0, 242, 254, 0.1);
+  transform: scale(1.01);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+/* Futuristic Form Design */
+form {
+  margin-top: 25px;
+}
+
+form label {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.2em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+form input[type="text"] {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  font-size: 1.1em;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-glow);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 0 20px rgba(0, 242, 254, 0.4),
+    inset 0 0 10px rgba(0, 242, 254, 0.1);
+}
+
+form input[type="submit"] {
+  background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+  color: var(--dark);
+  padding: 14px 40px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2em;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form input[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+form input[type="submit"]:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+form input[type="submit"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.6);
+}
+
+/* Divider with Glow */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+  margin: 30px 0;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+footer p {
+  opacity: 0.8;
+}
+
+/* Emphasis Styling */
+strong {
+  color: var(--highlight);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 2.2em;
+    letter-spacing: 1px;
+  }
+
+  section h2 {
+    font-size: 1.8em;
+  }
+
+  header img {
+    width: 200px;
+    height: auto;
+  }
+
+  header nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+}
